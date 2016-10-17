@@ -88,7 +88,9 @@ module.exports = {
         // react-dom 使用cdn加载
         'react-dom': 'ReactDOM',
         // react 路由
-        'react-router': 'ReactRouter'
+        'react-router': 'ReactRouter',
+        //antdUI
+        'antd':'Antd'
     }
 
 }

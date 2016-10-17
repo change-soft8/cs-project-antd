@@ -16,7 +16,7 @@
         window.cacheMap = {
             // ========================== javascript 脚本相关 ==============================
             // 系统公共部分
-            shared: '/__build__/shared.a21419d057bcac704098.js',
+            shared: '/__build__/shared.971bdb95b8c4fe68520d.js',
             // react 压缩组件 （测试生产环境）
             react: '//cdn.bootcss.com/react/15.2.1/react.min.js',
             // react Dom 组件
@@ -24,7 +24,10 @@
             // react 路由组件
             reactRouter: '//cdn.bootcss.com/react-router/2.7.0/ReactRouter.min.js',
             //router-example
-            'router.page': '/__build__/router.a21419d057bcac704098.page.js'
+            'router.page': '/__build__/router.971bdb95b8c4fe68520d.page.js',
+            //antdUi
+            'antdJs':'//cdn.bootcss.com/antd/2.0.1/antd.min.js',
+            'antdCss':'//cdn.bootcss.com/antd/2.0.1/antd.min.css'
         }
 
         // 加载系统共享组件
@@ -104,6 +107,10 @@
                         query: queryMin,
                         replace: replaceMin
                     }]
+                },{
+                    url:antdJs
+                },{
+                    url:antdCss
                 }).then(function() {
                     //加载page文件
                     for (k in cacheMap) {

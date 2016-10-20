@@ -1,24 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router'
+import RightSider from '../components/rightSider/rightSider'
+import { Row, Col } from 'antd';
 
-const App = React.createClass({
+export default class App extends React.Component {
+    render() {
+        return (
+            <div>
+            <Row>
+              <Col span={4}>
+               <RightSider />
+              </Col>
+              <Col span={20}>{this.props.children}</Col>
+            </Row>
+            </div>
+        )
+    }
 
-  render() {
-    return (
-      <div>
-        <ul>
-          <li>
-              <Link to="/logout">Log out</Link>
-          </li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/">Home</Link> </li>
-          <li><Link to="/landing">landing</Link> </li>
-        </ul>
-        {this.props.children}
-      </div>
-    )
-  }
-
-})
-
-module.exports = App
+}

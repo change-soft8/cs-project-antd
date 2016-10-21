@@ -23,5 +23,4 @@ class About extends React.Component {
     }
 }
 
-
 module.exports = About

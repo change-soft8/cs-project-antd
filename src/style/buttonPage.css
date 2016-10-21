@@ -1,0 +1,18 @@
+.buttons .ant-card {
+    margin: 0 0 16px;
+}
+
+.code-box-demo .ant-btn {
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+
+.code-box-meta.markdown {
+    position: relative;
+    padding: 17px 16px 15px 20px;
+    border-radius: 0 0 6px 6px;
+    -webkit-transition: background-color .4s ease;
+    transition: background-color .4s ease;
+    width: 100%;
+    font-size: 12px
+}

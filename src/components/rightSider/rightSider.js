@@ -18,25 +18,23 @@ export default class RightSider extends React.Component {
     render() {
         return (
             <Menu
-                  defaultOpenKeys={['sub1']}
+                  style={{ width: 220 }}
+                  defaultOpenKeys={['Basic']}
                   mode={this.state.mode}
                   theme='dark'
                 >
-                  <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-                    <MenuItemGroup title="Item 1">
+                  <SubMenu key="Basic" title={<span><Icon type="mail" /><span>Basic</span></span>}>
+                      <Menu.Item key="buttons"><Link to="/buttonPage">button按钮</Link></Menu.Item>
                       <Menu.Item key="1"><Link to="/logout">Log out</Link></Menu.Item>
                       <Menu.Item key="2"><Link to="/about">About</Link></Menu.Item>
                       <Menu.Item key="3"><Link to="/">Home</Link></Menu.Item>
                       <Menu.Item key="4"><Link to="/landing">Landing</Link></Menu.Item>
-                      <Menu.Item key="5">Option 2</Menu.Item>
+                      <Menu.Item key="5">Option 1</Menu.Item>
                       <Menu.Item key="6">Option 2</Menu.Item>
                       <Menu.Item key="7">Option 2</Menu.Item>
                       <Menu.Item key="8">Option 2</Menu.Item>
-                    </MenuItemGroup>
-                    <MenuItemGroup title="Item 2">
                       <Menu.Item key="9">Option 3</Menu.Item>
                       <Menu.Item key="10">Option 4</Menu.Item>
-                    </MenuItemGroup>
                   </SubMenu>
                   <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigation Two</span></span>}>
                     <Menu.Item key="21">Option 5</Menu.Item>

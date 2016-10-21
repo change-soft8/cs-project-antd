@@ -1,0 +1,22 @@
+.mainCon {
+    background: #404040;
+}
+
+.rightSider {
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
+
+.con {
+    margin-left: 220px;
+    background: #fff;
+}
+
+.floatL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}

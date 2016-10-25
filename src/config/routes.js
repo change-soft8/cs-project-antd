@@ -1,5 +1,5 @@
 export default {
-    component: require('../router/App'),
+    component: require('../router/App').default,
     childRoutes: [{
             path: '/logout',
             getComponent: (nextState, cb) => {
@@ -21,15 +21,22 @@ export default {
                     cb(null, require('../router/Landing'))
                 })
             }
-        },
-
-        {
-            path: '/',
+        }, {
+            path: '/buttonPage',
             getComponent: (nextState, cb) => {
-                return require.ensure([], (require) => {
-                    cb(null, require('../router/Home'))
+                require.ensure([], (require) => {
+                    cb(null, require('../pages/buttonPage').default)
                 })
-            },
+            }
+        }, {
+            path: '/',
+            indexRoute: {
+                getComponent: (nextState, cb) => {
+                    return require.ensure([], (require) => {
+                        cb(null, require('../router/Home').default)
+                    })
+                }
+            }
 
         }
 

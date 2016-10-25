@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const SRC_PATH = path.resolve(__dirname, '../src');
+const APP_PATH = path.resolve(__dirname, '../src/app.js');
 const BUILD_PATH = path.resolve(__dirname, '__build__/');
 const INDEX_FILE = path.resolve(__dirname, 'index.html');
 const exec = require('child_process').exec;
@@ -10,11 +11,7 @@ module.exports = {
 
     devtool: 'inline-source-map',
 
-    entry: fs.readdirSync(SRC_PATH).reduce(function(entries, dir) {
-        if (fs.statSync(path.join(SRC_PATH, dir)).isDirectory() && dir != 'style' && dir != 'config')
-            entries[dir] = path.join(SRC_PATH, 'app.js')
-        return entries
-    }, {}),
+    entry: { 'router':APP_PATH},
 
     output: {
         path: __dirname + '/__build__',
@@ -90,7 +87,8 @@ module.exports = {
         // react 路由
         'react-router': 'ReactRouter',
         //antdUI
-        'antd':'Antd'
+        'antdJs':'antdJs',
+        'antdcss':'antdCss'
     }
 
 }

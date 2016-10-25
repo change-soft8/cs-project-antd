@@ -7,7 +7,7 @@ export default class AvatorPopup extends React.Component {
         return (
             <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }}>
 			    <div className="custom-image">
-			      <img alt="example" width="100%" src={imgSrc} />
+			      <img alt="头像" width="100%" src={imgSrc} />
 			    </div>
 			    <div className="custom-card" style={{textAlign: 'center'}}>
 			      <h3>Europe Street beat</h3>

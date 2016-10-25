@@ -25,6 +25,7 @@ module.exports = {
     },
     //webpack-dev-server配置
     devServer: {
+        host: '0.0.0.0',
         contentBase: __dirname,
         port: 3000,
         stats: {

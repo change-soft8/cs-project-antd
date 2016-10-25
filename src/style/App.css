@@ -6,6 +6,54 @@
     position: absolute;
     top: 50px;
     left: 0;
+    height: 100%;
+    background: #404040;
+}
+
+.vertical .header .header-logo {
+    width: 50px;
+}
+
+.vertical .header .header-nav {
+    margin-left: 50px
+}
+
+.vertical .header .header-logo .imgBig {
+    display: none
+}
+
+.vertical .header .header-logo .imgSmall {
+    display: block
+}
+
+.vertical .rightSider>ul {
+    width: 50px!important;
+}
+
+.vertical .rightSider .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0px 5px 0px 7px;
+}
+
+.vertical .rightSider .ant-menu-submenu-title>span>i {
+    line-height: 42px;
+}
+
+.vertical .rightSider .ant-menu-submenu-title>span>span {
+    display: none;
+}
+
+.vertical .rightSider .ant-menu-submenu-vertical > .ant-menu-submenu-title:after {
+    right: 8px
+}
+
+.vertical .con {
+    margin-left: 50px;
+}
+
+.rightSider .ant-menu-submenu-vertical > .ant-menu {
+    margin-left: 0px;
+    border-radius: 0px;
+    background: #333;
 }
 
 .con {

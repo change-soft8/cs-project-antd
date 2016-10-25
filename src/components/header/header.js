@@ -1,35 +1,47 @@
 import React from 'react';
-import { Row, Icon, Popover, Button,Tooltip  } from 'antd';
+import { Row, Icon, Popover, Button, Tooltip } from 'antd';
 import AvatorPopup from './avatorPopup'
 import '../../style/header/header.css';
-const toggleText = <span>收缩</span>;
+
 const setText = <span>设置</span>;
 const content = <AvatorPopup />;
 
 
 export default class Header extends React.Component {
     state = {
-       imgShow: <AvatorPopup />
+        imgShow: <AvatorPopup />,
+        toggleIcon: 'menu-fold'
     }
 
+    /**
+     * 弹出图片
+     * @param  {[type]} s [description]
+     * @return {[type]}   [description]
+     */
     showPopover(s) {
-      if(s) {
-        this.setState({imgShow: <AvatorPopup show={true}/>})
-      }
+        if (s) {
+            this.setState({ imgShow: <AvatorPopup show={true}/> })
+        }
+    }
+
+    clickToggle() {
+        this.props.callbackParent();
+        let title = this.state.toggleIcon == 'menu-fold' ? 'menu-unfold' : 'menu-fold';
+        this.setState({ toggleIcon: title })
     }
 
     render() {
+        var toggleText = <span>{this.state.toggleTextTitle}</span>;
         return (
             <div className="header">    
               <div className="header-logo">
-                <img src="https://step.newtouch.com/images/newlogo.png"/>
-              </div>
+                <img className="imgBig" src="https://step.newtouch.com/images/newlogo.png"/>
+                <img className="imgSmall" src="./../src/img/cloudWht.png"/>
+              </div> 
               <div  className="header-nav">
-                <Tooltip placement="bottom" title={toggleText}>
-                  <div className="sidebar-toggle header-icon">
-                    <Icon type="bars" />
-                  </div>
-                </Tooltip>
+                <div className="sidebar-toggle header-icon" onClick={this.clickToggle.bind(this)}>
+                  <Icon type={this.state.toggleIcon} />
+                </div>
                 <Tooltip placement="bottomLeft" title={setText}>
                   <div className="setting header-icon">
                     <Icon type="setting" />

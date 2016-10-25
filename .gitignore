@@ -1,4 +1,7 @@
+#build destination
 cfg/__build__
+#photoshop file
+psd
 # Logs
 logs
 *.log

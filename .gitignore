@@ -1,5 +1,6 @@
 #build destination
-cfg/__build__
+cfg/__mobile__
+cfg/__web__
 #photoshop file
 psd
 # Logs

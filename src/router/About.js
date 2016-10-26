@@ -1,6 +1,5 @@
 import React from 'react'
 import { DatePicker, message } from 'antd';
-import 'antd/dist/antd.css';
 
 class About extends React.Component {
     constructor(props) {

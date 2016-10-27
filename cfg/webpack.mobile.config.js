@@ -87,7 +87,7 @@ module.exports = {
         // react 路由
         'react-router': 'ReactRouter',
         //antd mobile UI
-        'antd-mobile': 'antd-mobile'
+        'antd-mobile': "window['antd-mobile']"
     }
 
 }

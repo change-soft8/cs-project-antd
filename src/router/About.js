@@ -9,7 +9,7 @@ class About extends React.Component {
         };
     }
     handleChange(date) {
-        message.info('您选择的日期是: ' + date.toString());
+        message.info('您选择的日期是1: ' + date.toString());
         this.setState({ date });
     }
     render() {

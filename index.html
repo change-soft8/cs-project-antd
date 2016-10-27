@@ -7,6 +7,50 @@
 
 <body>
 </body>
-<script src="bundle.js"></script>
+<script src="//cdn.bootcss.com/react/15.2.1/react.js"></script>
+<script src="//cdn.bootcss.com/react/15.2.1/react-dom.js"></script>
+<script src="//cdn.bootcss.com/react-router/2.7.0/ReactRouter.js"></script>
+<script type="text/javascript">
+//当前客户端是否为手机
+function isMobile() {
+    var ua = navigator.userAgent;
+    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+        isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+        isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+        isMobile = isIphone || isAndroid;
+    if (isMobile) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//添加antd CDN
+var addCdn = function() {
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.async = false;
+    var script2 = document.createElement('script');
+    script2.type = 'text/javascript';
+    script2.charset = 'utf-8';
+    script2.async = false;
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    if (isMobile()) {
+        link.href = "https://unpkg.com/antd-mobile@0.9.4/dist/antd-mobile.min.css";
+        script.src = "https://unpkg.com/antd-mobile@0.9.4/dist/antd-mobile.min.js";
+    } else {
+        link.href = "//cdn.bootcss.com/antd/2.0.1/antd.min.css";
+        script.src = "//cdn.bootcss.com/antd/2.0.1/antd.min.js";
+    }
+    head.appendChild(link);
+    head.appendChild(script);
+    script2.src = "bundle.js";
+    head.appendChild(script2);
+}();
+</script>
 
 </html>

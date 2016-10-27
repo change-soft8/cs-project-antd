@@ -1,71 +1,63 @@
-import React from 'react'
-import { Link } from 'react-router'
-// import 'antd';
-// import { Drawer, List, NavBar } from 'antd-mobile';
+import { Drawer, List, NavBar, Icon } from 'antd-mobile';
+import "../style/App.css";
 
-export default class App extends React.Component {
+const App = React.createClass({
+    getInitialState() {
+        return {
+            open: false,
+            position: 'left',
+        };
+    },
+    onOpenChange(isOpen) {
+        console.log(isOpen, arguments);
+        this.setState({ open: !this.state.open });
+    },
     render() {
+        const sidebar = (<List>
+      {[...Array(20).keys()].map((i, index) => {
+        if (index === 0) {
+          return (<List.Item key={index}
+            thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+            multipleLine
+          >分类1</List.Item>);
+        }
+        return (<List.Item key={index}
+          thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
+        >分类{index}</List.Item>);
+      })}
+    </List>);
+
+        const drawerProps = {
+            open: this.state.open,
+            position: this.state.position,
+            onOpenChange: this.onOpenChange,
+        };
+
         return (
-            <div>
-            <ul>
-              <li>
-                  <Link to="/logout">Log out</Link>
-              </li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/">Home</Link> </li>
-              <li><Link to="/landing">landing</Link> </li>
-            </ul>
-            {this.props.children}
-          </div>
+            <div style={{ height: '100%' }}>
+              <NavBar iconName="ellipsis" onLeftClick={this.onOpenChange}>
+                基本
+              </NavBar>
+              <div className="drawer-container">
+                <Drawer sidebar={sidebar}
+                    dragHandleStyle={{ display: 'none' }}
+                    contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
+                    {...drawerProps}
+                  >
+                    请点击左上角图标
+                  </Drawer>
+              </div>
+              {/*<div className="drawer-container">
+                <Drawer sidebar={sidebar}
+                  dragHandleStyle={{ display: 'none' }}
+                  contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
+                  {...drawerProps}
+                >
+                  请点击左上角图标
+                </Drawer>
+              </div>*/}
+            </div>
         )
     }
-}
-
-
-// export default class App extends React.Component {
-//     getInitialState() {
-//         return {
-//             open: false,
-//             position: 'left',
-//         };
-//     }
-//     onOpenChange(isOpen) {
-//         console.log(isOpen, arguments);
-//         this.setState({ open: !this.state.open });
-//     }
-//     render() {
-//         const sidebar = (<List>
-//       {[...Array(20).keys()].map((i, index) => {
-//         if (index === 0) {
-//           return (<List.Item key={index}
-//             thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-//             multipleLine
-//           >分类</List.Item>);
-//         }
-//         return (<List.Item key={index}
-//           thumb="https://zos.alipayobjects.com/rmsportal/eOZidTabPoEbPeU.png"
-//         >分类{index}</List.Item>);
-//       })}
-//     </List>);
-
-//         const drawerProps = {
-//             open: this.state.open,
-//             position: this.state.position,
-//             onOpenChange: this.onOpenChange,
-//         };
-//         return (<div style={{ height: '100%' }}>
-//       <NavBar iconName="ellipsis" onLeftClick={this.onOpenChange}>
-//         基本
-//       </NavBar>
-//       <div className="drawer-container">
-//         <Drawer sidebar={sidebar}
-//           dragHandleStyle={{ display: 'none' }}
-//           contentStyle={{ color: '#A6A6A6', textAlign: 'center', paddingTop: 42 }}
-//           {...drawerProps}
-//         >
-//           请点击左上角图标
-//         </Drawer>
-//       </div>
-//     </div>);
-//     }
-// }
+});
+module.exports = App

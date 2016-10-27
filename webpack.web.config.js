@@ -42,5 +42,16 @@ module.exports = {
         new WebpackBrowserPlugin({
             browser: 'Chrome'
         })
-    ]
+    ],
+    // CDN 加载的外部文件
+    externals: {
+        // react 使用cdn加载
+        'react': 'React',
+        // react-dom 使用cdn加载
+        'react-dom': 'ReactDOM',
+        // react 路由
+        'react-router': 'ReactRouter',
+        //antd UI
+        'antd': 'antd'
+    }
 };

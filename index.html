@@ -40,8 +40,8 @@ var addCdn = function() {
     link.rel = 'stylesheet';
     link.type = 'text/css';
     if (isMobile()) {
-        link.href = "https://unpkg.com/antd-mobile@0.9.4/dist/antd-mobile.min.css";
-        script.src = "https://unpkg.com/antd-mobile@0.9.4/dist/antd-mobile.min.js";
+        link.href = "./msrc/js/antd-mobile.min.css";
+        script.src = "./msrc/js/antd-mobile.min.js";
     } else {
         link.href = "//cdn.bootcss.com/antd/2.0.1/antd.min.css";
         script.src = "//cdn.bootcss.com/antd/2.0.1/antd.min.js";

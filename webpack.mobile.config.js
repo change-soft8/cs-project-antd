@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const WebpackBrowserPlugin = require('webpack-browser-plugin');
 
 module.exports = {
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     entry: [
         'webpack-dev-server/client?http://0.0.0.0:3001', // WebpackDevServer host and port
         'webpack/hot/only-dev-server',

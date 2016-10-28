@@ -9,8 +9,6 @@ const exec = require('child_process').exec;
 
 module.exports = {
 
-    devtool: 'inline-source-map',
-
     entry: { 'mobile': APP_PATH },
 
     output: {

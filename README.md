@@ -6,11 +6,17 @@ cs-project-antd antd Examples
 
 #### 1.1 运行方法
 
-运行： `npm start`
+运行： `npm start` 或 `npm run start:web`
 
-打开端口号为 `3000` 的浏览器窗口，将所有文件全部打包成 **一个文件**，该文件存储在内存中
+打开端口号为 `3000` 的浏览器窗口，呈现web端开发页面，将所有文件全部打包成 **一个文件**，该文件存储在内存中
 
 [http://localhost:3000](http://localhost:3000)
+
+运行： `npm run start:mobile`
+
+打开端口号为 `3001` 的浏览器窗口，呈现mobile端开发页面，将所有文件全部打包成 **一个文件**，该文件存储在内存中
+
+[http://localhost:3001](http://localhost:3001)
 
 #### 1.2 路由配置
 
@@ -55,11 +61,11 @@ ReactDOM.render((
 
 [http://localhost:8080](http://localhost:8080)
 
-运行： `npm run proweb`
+运行： `npm run pro:web`
 
 打开端口号为 `8080` 的浏览器窗口，实现了web端文件的 **按需加载**，分别打包在 `cs-project/cfg/__build__/*.js`
 
-运行： `npm run promobile`
+运行： `npm run pro:mobile`
 
 打开端口号为 `8080` 的浏览器窗口，实现了mobile端文件的 **按需加载**，分别打包在 `cs-project/cfg/mCfg/__mBuild__/*.js`
 

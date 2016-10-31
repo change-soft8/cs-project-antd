@@ -5,9 +5,6 @@
   "main": "index.js",
   "scripts": {
     "compile": "webpack --config webpack.web.config.js --progress --colors",
-    "watch": "npm run watch:web",
-    "watch:web": "webpack --config webpack.web.config.js --progress --colors --watch",
-    "watch:mobile": "webpack --config webpack.mobile.config.js --progress --colors --watch",
     "start": "npm run start:web",
     "start:web": "webpack-dev-server --config webpack.web.config.js --history-api-fallback",
     "start:mobile": "webpack-dev-server --config webpack.mobile.config.js --history-api-fallback",

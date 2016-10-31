@@ -1,26 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const SRC_PATH = path.resolve(__dirname, '../src');
-const BUILD_PATH = path.resolve(__dirname, '__build__/');
+const SRC_PATH = path.resolve(__dirname, '../msrc');
+const APP_PATH = path.resolve(__dirname, '../msrc/app.js');
+const BUILD_PATH = path.resolve(__dirname, '__mobile__/');
 const INDEX_FILE = path.resolve(__dirname, 'index.html');
 const exec = require('child_process').exec;
 
 module.exports = {
 
-    devtool: 'inline-source-map',
-
-    entry: fs.readdirSync(SRC_PATH).reduce(function(entries, dir) {
-        if (fs.statSync(path.join(SRC_PATH, dir)).isDirectory() && dir != 'style' && dir != 'config')
-            entries[dir] = path.join(SRC_PATH, 'app.js')
-        return entries
-    }, {}),
+    entry: { 'mobile': APP_PATH },
 
     output: {
-        path: __dirname + '/__build__',
+        path: __dirname + '/__mobile__',
         filename: '[name].[hash].page.js',
         chunkFilename: '[id].chunk.js',
-        publicPath: '/__build__/'
+        publicPath: '/__mobile__/'
     },
 
     module: {
@@ -37,7 +32,7 @@ module.exports = {
     },
     plugins: [
         //共享文件
-        new webpack.optimize.CommonsChunkPlugin('shared.[hash].js'),
+        new webpack.optimize.CommonsChunkPlugin('mobileshared.[hash].js'),
         // 根据文件大小排序
         new webpack.optimize.OccurrenceOrderPlugin(),
         // 对文件进行压缩
@@ -52,7 +47,7 @@ module.exports = {
         function() {
 
             // 删除过期的 shared 文件
-            exec('rm -rf ' + BUILD_PATH + '/shared*.js', function(err, out) {
+            exec('rm -rf ' + BUILD_PATH + '/mobileshared*.js', function(err, out) {
                 console.log(out);
                 err && console.log(err);
             });
@@ -70,9 +65,9 @@ module.exports = {
                     // 获得 html 文本
                     var html = data.toString();
                     // 替换 shared.hash.js 文本
-                    html = html.replace(/shared\.[^\.]+\.js/, 'shared.' + stats.hash + '.js');
+                    html = html.replace(/mobileshared\.[^\.]+\.js/, 'mobileshared.' + stats.hash + '.js');
                     //替换page文本
-                    html = html.replace(/[^\.]+\.page\.js/g, stats.hash + '.page.js');
+                    html = html.replace(/\/__mobile__\/mobile\.(.+?)\.page\.js/g, '/__mobile__/mobile.' + stats.hash + '.page.js');
                     // 将新值，重写入首页
                     fs.writeFile(INDEX_FILE, html, err => {
                         !err && console.log('Set has success: ' + stats.hash);
@@ -89,8 +84,8 @@ module.exports = {
         'react-dom': 'ReactDOM',
         // react 路由
         'react-router': 'ReactRouter',
-        //antdUI
-        'antd':'Antd'
+        //antd mobile UI
+        'antd-mobile': "window['antd-mobile']"
     }
 
 }

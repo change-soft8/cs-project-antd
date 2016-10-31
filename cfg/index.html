@@ -1,33 +1,51 @@
 <html>
 
 <head>
-    <title>Authentication With Shared Root Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antd Example</title>
+    <link rel="shortcut icon" href="/favicon.ico">
 </head>
 
 <body>
-    <h1 class="breadcrumbs">React Router Examples</h1>
     <div id="example"></div>
+    <script type="text/javascript" src="//cdn.bootcss.com/babel-polyfill/6.16.0/polyfill.min.js"></script>
     <script type="text/javascript" src="./jsCache.js"></script>
     <script type="text/javascript">
     jsCache.domReady(function() {
         // 设置缓存过期时间
         jsCache.expires = 3650 * 24 * 60 * 60 * 1000;
-        // 依赖插件配置cacheMap
+        // 依赖插件公共配置cacheMap
         window.cacheMap = {
+                // ========================== javascript 脚本相关 ==============================
+                // react 压缩组件 （测试生产环境）
+                react: '//cdn.bootcss.com/react/15.2.1/react.js',
+                // react Dom 组件
+                reactDom: '//cdn.bootcss.com/react/15.2.1/react-dom.js',
+                // react 路由组件
+                reactRouter: '//cdn.bootcss.com/react-router/2.7.0/ReactRouter.js'
+            }
+            // 依赖插件配置cacheWebMap
+        window.cacheWebMap = {
             // ========================== javascript 脚本相关 ==============================
             // 系统公共部分
-            shared: '/__build__/shared.971bdb95b8c4fe68520d.js',
-            // react 压缩组件 （测试生产环境）
-            react: '//cdn.bootcss.com/react/15.2.1/react.min.js',
-            // react Dom 组件
-            reactDom: '//cdn.bootcss.com/react/15.2.1/react-dom.min.js',
-            // react 路由组件
-            reactRouter: '//cdn.bootcss.com/react-router/2.7.0/ReactRouter.min.js',
+            shared: '/__web__/webshared.56bfb950469f33f25994.js',
             //router-example
-            'router.page': '/__build__/router.971bdb95b8c4fe68520d.page.js',
+            'web.page': '/__web__/web.56bfb950469f33f25994.page.js',
             //antdUi
-            'antdJs':'//cdn.bootcss.com/antd/2.0.1/antd.min.js',
-            'antdCss':'//cdn.bootcss.com/antd/2.0.1/antd.min.css'
+            'antdJs': '//cdn.bootcss.com/antd/2.0.1/antd.min.js',
+            'antdCss': '//cdn.bootcss.com/antd/2.0.1/antd.min.css'
+        }
+
+        // 依赖插件配置cacheMobileMap
+        window.cacheMobileMap = {
+            // ========================== javascript 脚本相关 ==============================
+            // 系统公共部分
+            shared: '/__mobile__/mobileshared.45c1ce43c3fbcc283c05.js',
+            //router-example
+            'mobile.page': '/__mobile__/mobile.45c1ce43c3fbcc283c05.page.js',
+            //antdUi
+            'antdMJs': 'https://unpkg.com/antd-mobile@0.9.4/dist/antd-mobile.min.js',
+            'antdMCss': 'https://unpkg.com/antd-mobile@0.9.4/dist/antd-mobile.min.css'
         }
 
         // 加载系统共享组件
@@ -52,6 +70,7 @@
                     var sharedChg = false;
                     //老的hash值
                     var oldHash;
+                    var cacheObj = isMobile() ? window.cacheMobileMap : window.cacheWebMap;
                     // 遍历localStorage获取老的Hash值
                     for (var k in localStorage) {
                         // 获得 缓存插件url
@@ -59,12 +78,11 @@
                         // 如果k 包含 jsCache_和share
                         if (k.indexOf('jsCache_') > -1 && k.indexOf('shared') > -1) {
                             //判断shared名是否改变
-                            if (bn !== window.cacheMap.shared) {
+                            if (bn !== cacheObj.shared) {
                                 sharedChg = true;
                                 oldHash = bn.match(/\.[^\.]+\./)[0];
                             }
                         }
-
                     }
                     // 遍历localStorage获取去除不匹配项
                     for (var k in localStorage) {
@@ -78,16 +96,27 @@
                         } else {
                             // 默认不匹配
                             var load = false;
-                            // 遍历依赖插件cacheMap
-                            for (var n in cacheMap) {
+                            // 遍历依赖插件mobile或web的cacheMap
+                            for (var n in cacheObj) {
                                 // 获得插件url
-                                var url = cacheMap[n];
+                                var url = cacheObj[n];
                                 // 如果该插件需要加载
                                 if (bn === url) {
                                     // 插件需要加载
                                     load = true;
                                 }
                             }
+                            // 遍历依赖插件comment的cacheMap
+                            for (var n in window.cacheMap) {
+                                // 获得插件url
+                                var url = window.cacheMap[n];
+                                // 如果该插件需要加载
+                                if (bn === url) {
+                                    // 插件需要加载
+                                    load = true;
+                                }
+                            }
+
                             // 如果插件不需要加载
                             if (!load) {
                                 // 移除
@@ -95,35 +124,82 @@
                             }
                         }
                     }
-
                 }
-                jsCache.load({
-                    url: cacheMap.shared,
-                    // 加载到数据需要更改的内容
-                    dataChange: [{
-                        query: query,
-                        replace: replace
-                    }, {
-                        query: queryMin,
-                        replace: replaceMin
-                    }]
-                },{
-                    url:antdJs
-                },{
-                    url:antdCss
-                }).then(function() {
-                    //加载page文件
-                    for (k in cacheMap) {
-                        if (k.indexOf('.page') > -1) {
-                            jsCache.load({
-                                url: cacheMap[k]
-                            })
-                        }
-                    }
-                });
+
+                loadPage(query, replace, queryMin, replaceMin);
+
             });
         });
     });
+
+    //当前客户端是否为手机
+    function isMobile() {
+        var ua = navigator.userAgent;
+        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+            isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+            isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+            isMobile = isIphone || isAndroid;
+        if (isMobile) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //加载手机或电脑网页
+    function loadPage(query, replace, queryMin, replaceMin) {
+        if (isMobile()) {
+            jsCache.load({
+                url: cacheMobileMap.shared,
+                // 加载到数据需要更改的内容
+                dataChange: [{
+                    query: query,
+                    replace: replace
+                }, {
+                    query: queryMin,
+                    replace: replaceMin
+                }]
+            }, {
+                url: cacheMobileMap.antdMJs
+            }, {
+                url: cacheMobileMap.antdMCss
+            }).then(function() {
+                //加载page文件
+                for (mk in cacheMobileMap) {
+                    if (mk.indexOf('.page') > -1) {
+                        jsCache.load({
+                            url: cacheMobileMap[mk]
+                        })
+                    }
+                }
+            });
+        } else {
+            jsCache.load({
+                url: cacheWebMap.shared,
+                // 加载到数据需要更改的内容
+                dataChange: [{
+                    query: query,
+                    replace: replace
+                }, {
+                    query: queryMin,
+                    replace: replaceMin
+                }]
+            }, {
+                url: cacheWebMap.antdJs
+            }, {
+                url: cacheWebMap.antdCss
+            }).then(function() {
+                //加载page文件
+                for (wk in cacheWebMap) {
+                    if (wk.indexOf('.page') > -1) {
+                        jsCache.load({
+                            url: cacheWebMap[wk]
+                        })
+                    }
+                }
+            });
+        }
+    }
     </script>
 </body>
 

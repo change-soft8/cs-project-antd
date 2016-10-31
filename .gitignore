@@ -1,4 +1,10 @@
-cfg/__build__
+#build destination
+cfg/__mobile__
+cfg/__web__
+build
+mbuild
+#photoshop file
+psd
 # Logs
 logs
 *.log

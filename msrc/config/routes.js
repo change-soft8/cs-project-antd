@@ -22,13 +22,6 @@ export default {
                 })
             }
         }, {
-            path: '/buttonPage',
-            getComponent: (nextState, cb) => {
-                require.ensure([], (require) => {
-                    cb(null, require('../pages/buttonPage').default)
-                })
-            }
-        }, {
             path: '/',
             indexRoute: {
                 getComponent: (nextState, cb) => {

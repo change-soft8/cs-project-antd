@@ -5,12 +5,9 @@ const imgPath = path.resolve(__dirname, '../src/img');
 
 //加载静态地址
 app.use(express.static(__dirname));
-app.use(express.static(imgPath));
 
 app.get('/*', (req, res) => {
-    // if (!(req.originalUrl.indexOf('png') > -1)) {
     res.sendFile(path.join(__dirname, 'index.html'));
-    // }
 })
 
 app.use(function(req, res) {

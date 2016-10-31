@@ -21,7 +21,13 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-            { test: /\.css$/, loader: 'style!css' }
+            { test: /\.css$/, loader: 'style!css' }, {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loaders: [
+                    'url?limit=25000&name=/img/[hash:8].[name].[ext]',
+                    'image-webpack?{progressive:true, arithmetic:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "1-5", speed: 10}}',
+                ]
+            }
         ]
     },
 

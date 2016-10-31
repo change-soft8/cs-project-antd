@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Icon, Popover, Button, Tooltip } from 'antd';
 import AvatorPopup from './avatorPopup'
 import '../../style/header/header.css';
+import CloudWht from '../../img/cloudWht.png';
 
 const setText = <span>设置</span>;
 const content = <AvatorPopup />;
@@ -36,7 +37,7 @@ export default class Header extends React.Component {
             <div className="header">    
               <div className="header-logo">
                 <img className="imgBig" src="https://step.newtouch.com/images/newlogo.png"/>
-                <img className="imgSmall" src="./../src/img/cloudWht.png"/>
+                <img className="imgSmall" src={CloudWht}/>
               </div> 
               <div  className="header-nav">
                 <div className="sidebar-toggle header-icon" onClick={this.clickToggle.bind(this)}>

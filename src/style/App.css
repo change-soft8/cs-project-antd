@@ -30,6 +30,10 @@
     width: 50px!important;
 }
 
+.vertical .rightSider>ul li.ant-menu-submenu {
+    position: inherit;
+}
+
 .vertical .rightSider .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title {
     padding: 0px 5px 0px 7px;
 }

@@ -1,6 +1,5 @@
 import { TabBar } from 'antd-mobile';
-// import "../../style/footer/footer.css";
-/* eslint global-require: 0 */
+import RefreshPage from '../../pages/refreshPage'
 
 export default class Footer extends React.Component {
     state = {
@@ -11,17 +10,17 @@ export default class Footer extends React.Component {
     renderContent(pageText) {
         return (
             <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-        <div style={{ paddingTop: 60 }}>你已点击“{pageText}” tab， 当前展示“{pageText}”信息</div>
-        <a style={{ display: 'block', marginTop: 40 }} onClick={(e) => {
-          e.preventDefault();
-          this.setState({
-            hidden: !this.state.hidden,
-          });
-        }}
-        >
-          点击切换 tab-bar 显示/隐藏
-        </a>
-      </div>
+              <div style={{ paddingTop: 60 }}>你已点击“{pageText}” tab， 当前展示“{pageText}”信息</div>
+              <a style={{ display: 'block', marginTop: 40 }} onClick={(e) => {
+                e.preventDefault();
+                this.setState({
+                  hidden: !this.state.hidden,
+                });
+              }}
+              >
+                点击切换 tab-bar 显示/隐藏
+              </a>
+            </div>
         );
     }
     render() {
@@ -61,7 +60,7 @@ export default class Footer extends React.Component {
           }}
           data-seed="logId1"
         >
-          {this.renderContent('通知')}
+          <RefreshPage />
         </TabBar.Item>
         <TabBar.Item
           icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/EljxLrJEShWZObW.png' }}

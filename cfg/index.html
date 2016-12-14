@@ -28,9 +28,9 @@
         window.cacheWebMap = {
             // ========================== javascript 脚本相关 ==============================
             // 系统公共部分
-            shared: '/__web__/webshared.56bfb950469f33f25994.js',
+            shared: '/__web__/webshared.8f4d7de4adfa9894d36e.js',
             //router-example
-            'web.page': '/__web__/web.56bfb950469f33f25994.page.js',
+            'web.page': '/__web__/web.8f4d7de4adfa9894d36e.page.js',
             //antdUi
             'antdJs': '//cdn.bootcss.com/antd/2.0.1/antd.min.js',
             'antdCss': '//cdn.bootcss.com/antd/2.0.1/antd.min.css'
@@ -59,11 +59,11 @@
             }).then(function() {
                 var query = 'head.appendChild(script)';
                 // 需替换的内容
-                var replace = 'jsCache.load({url:__webpack_require__.p + "" + chunkId + ".chunk.js"})';
+                var replace = 'jsCache.load({url:script.src})';
                 // 替换压缩后的现有内容查询器
-                var queryMin = /[a-z].appendChild\([a-z]\)/;
+                var queryMin = /[a-z].appendChild\(([a-z])\)/;
                 // 需替换的压缩后的内容
-                var replaceMin = 'jsCache.load({url:t.p+""+e+".chunk.js"})';
+                var replaceMin = 'jsCache.load({url:$1.src})';
                 // 如果支持 localStorage 存储
                 if (localStorage) {
                     // 默认shared不改变
@@ -92,6 +92,7 @@
                             //如果shared改变，localStorage删除老的hash和chunk文件
                             if (sharedChg) {
                                 jsCache.remove(bn);
+                                localStorage.removeItem(k);
                             }
                         } else {
                             // 默认不匹配
@@ -121,6 +122,7 @@
                             if (!load) {
                                 // 移除
                                 jsCache.remove(bn);
+                                localStorage.removeItem(k);
                             }
                         }
                     }

@@ -9,19 +9,28 @@ const exec = require('child_process').exec;
 
 module.exports = {
 
-    entry: { 'web': [APP_PATH] },
+    entry: {
+        'web': [APP_PATH]
+    },
 
     output: {
         path: __dirname + '/__web__',
         filename: '[name].[hash].page.js',
-        chunkFilename: '[id].chunk.js',
+        chunkFilename: '[id].[chunkhash].chunk.js',
         publicPath: '/__web__/'
     },
 
     module: {
         loaders: [
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
-            { test: /\.css$/, loader: 'style!css' }, {
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel'
+            },
+            {
+                test: /\.css$/,
+                loader: 'style!css'
+            }, {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
                     'url?limit=25000&name=/img/[hash:8].[name].[ext]',
@@ -42,7 +51,9 @@ module.exports = {
         // 根据文件大小排序
         new webpack.optimize.OccurrenceOrderPlugin(),
         // 对文件进行压缩
-        new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+        new webpack.optimize.UglifyJsPlugin({
+            minimize: true
+        }),
         // 删除重复依赖包
         new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({

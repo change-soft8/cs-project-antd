@@ -57,7 +57,7 @@ ReactDOM.render((
 
 运行： `npm run pro`
 
-打开端口号为 `8080` 的浏览器窗口，实现了web端和mobile端文件的 **按需加载**，分别打包在 `cs-project/cfg/__build__/*.js`和`cs-project/cfg/mCfg/__mBuild__/*.js`
+打开端口号为 `8080` 的浏览器窗口，实现了web端和mobile端文件的 **按需加载**，分别打包在 `cs-project/cfg/__web__/*.js`和`cs-project/cfg/mCfg/__mobile__/*.js`
 
 [http://localhost:8080](http://localhost:8080)
 
